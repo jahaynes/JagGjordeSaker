@@ -24,6 +24,20 @@
             </form>
         </div>
 
+		<table>
+			<#list calendar as week>
+				<tr>
+					<#list week as dy>
+					    <#if dy.isPartOfMonth()>
+						    <td class="im">${dy.day}</td>
+						<#else>
+						    <td class="om">${dy.day}</td>
+						</#if>
+					</#list>
+				</tr>
+            </#list>
+		</table>
+
         <div>
 
         <#if dones?size == 0 >
