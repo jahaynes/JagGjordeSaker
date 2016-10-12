@@ -1,7 +1,12 @@
 package se.mirado.jgs.data;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import se.mirado.jgs.data.time.SimpleDate;
 
+@Getter
+@AllArgsConstructor (access = AccessLevel.PRIVATE)
 public class Done {
 
 	private final long id;
@@ -9,31 +14,8 @@ public class Done {
 	private final HtmlEscaped consultantName;
 	private final HtmlEscaped consultantDone;
 
-	private Done(long id, SimpleDate date, HtmlEscaped consultantName, HtmlEscaped consultantDone) {
-		this.id = id;
-		this.date = date;
-		this.consultantName = consultantName;
-		this.consultantDone = consultantDone;
-	}
-
 	public static Done make(long id, SimpleDate date, HtmlEscaped consultantName, HtmlEscaped consultantDone) {
 		return new Done(id, date, consultantName, consultantDone);
-	}
-
-	public Long getId() {
-		return id;
-	}
-	
-	public SimpleDate getDate() {
-		return date;
-	}
-
-	public HtmlEscaped getConsultantName() {
-		return consultantName;
-	}
-
-	public HtmlEscaped getConsultantDone() {
-		return consultantDone;
 	}
 
 	@Override
