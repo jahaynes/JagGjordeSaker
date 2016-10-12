@@ -4,25 +4,24 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import javaslang.control.Try;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
+@Getter
+@AllArgsConstructor (access = AccessLevel.PROTECTED)
 public class SimpleDate {
 
 	private final int year;
 	private final int month;
 	private final int day;
 
-	protected SimpleDate(int year, int month, int day) {
-		this.year = year;
-		this.month = month;
-		this.day = day;
-	}
-
 	public static SimpleDate fromDate(LocalDate date) {
 		return new SimpleDate(date.getYear(), date.getMonthValue(), date.getDayOfMonth());
 	}
 
 	public static Try<SimpleDate> fromStringDate(String strDate) {
-		
+	
 		//TODO - LocalDate.parse can't parse single digit days - perhaps enforce this on the output :(
 		System.out.println(strDate);
 		Try<SimpleDate> t = Try.of( () -> fromDate(LocalDate.parse(strDate, DateTimeFormatter.ofPattern("yyyy-m-d"))));
@@ -34,18 +33,6 @@ public class SimpleDate {
 
 	public static SimpleDate today() {
 		return fromDate(LocalDate.now());
-	}
-
-	public int getYear() {
-		return year;
-	}
-
-	public int getMonth() {
-		return month;
-	}
-
-	public int getDay() {
-		return day;
 	}
 
 	@Override
