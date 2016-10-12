@@ -3,7 +3,7 @@
 <head>
     <title>Jag gjorde saker</title> 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
 
@@ -12,6 +12,7 @@
             <h2 class="muted">Add a done</h2>
 
             <div><i>Logged in as ${username}</i></div>
+            <div><i>The date is ${date}</i></div>
 
             <form name="employee" action="/addDone" method="post">
                 <div class="control-group">
@@ -20,6 +21,7 @@
                 </div>
                 <div class="controls"> 
                     <input type="submit" value="Done!" class="btn btn-primary"/>
+                    <input type="hidden" name="date" value ="${date}"/>               
                 </div>
             </form>
         </div>
@@ -28,11 +30,14 @@
 			<#list calendar as week>
 				<tr>
 					<#list week as dy>
-					    <#if dy.isPartOfMonth()>
-						    <td class="im">${dy.day}</td>
+				    	<#if dy.isPartOfMonth()>
+							<#assign dayClass = "im">
 						<#else>
-						    <td class="om">${dy.day}</td>
+							<#assign dayClass = "om">
 						</#if>
+					    <td class="${dayClass}">
+					    	<a href="/date/${dy.year?c}-${dy.month?c}-${dy.day?c}">${dy.day}</a>
+					    </td>
 					</#list>
 				</tr>
             </#list>
@@ -41,12 +46,14 @@
         <div>
 
         <#if dones?size == 0 >
+        	No dones yet.
         <#else>
             <#list dones as done>
             <div>
             <form action="/deleteDone/${done.id}" method="POST">
                 <input type="submit" value = "X"/>
-                <textarea readonly class="form-control consultantPrevDone" rows="3">
+                <input type="hidden" name="date" value ="${date}"/>
+                <textarea readonly class="form-control consultantPrevDone">
                     ${done.consultantDone}
                 </textarea>
             </form>

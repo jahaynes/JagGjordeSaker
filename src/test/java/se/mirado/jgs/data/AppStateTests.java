@@ -11,7 +11,7 @@ import java.util.function.Function;
 public class AppStateTests {
 
 	private Function<Long, Done> addFunc =
-			id -> Done.make(id, TestData.alice, TestData.done1);
+			id -> Done.make(id, TestData.date1, TestData.alice, TestData.done1);
 
 	private AppState empty = new AppState();
 	private AppState single = empty.prepend( addFunc );

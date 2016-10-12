@@ -40,15 +40,15 @@ public class CalFactory {
 
 		List<Wk> weeks = new ArrayList<Wk>();
 
-		List<Dy> days = new ArrayList<Dy>();
+		List<CalendarDate> days = new ArrayList<CalendarDate>();
 
 		int dow = 0;
 		for(LocalDate date = firstDayToRender; date.getDayOfYear() <= lastDayToRender.getDayOfYear(); date = date.plusDays(1)) {
-			days.add(Dy.fromDate(date.getMonthValue() == targetMonth, date));
+			days.add(CalendarDate.fromDate(date.getMonthValue() == targetMonth, date));
 			if(dow++ == 6) {
 				dow = 0;
 				weeks.add(Wk.fromDays(days));
-				days = new ArrayList<Dy>(); 
+				days = new ArrayList<CalendarDate>(); 
 			}
 		}
 
