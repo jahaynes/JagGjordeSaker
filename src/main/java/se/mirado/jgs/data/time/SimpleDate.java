@@ -6,9 +6,11 @@ import java.time.format.DateTimeFormatter;
 import javaslang.control.Try;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 @Getter
+@EqualsAndHashCode
 @AllArgsConstructor (access = AccessLevel.PROTECTED)
 public class SimpleDate {
 
@@ -38,17 +40,6 @@ public class SimpleDate {
 	@Override
 	public String toString() {
 		return year + "-" + month + "-" + day; 
-	}
-
-	@Override
-	public boolean equals(Object other) {
-		if (other instanceof SimpleDate) {
-			SimpleDate s = (SimpleDate)other;
-			return day == s.day
-				&& month == s.month
-				&& year == s.year;
-		}
-		return false;
 	}
 
 }
