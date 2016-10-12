@@ -4,17 +4,17 @@ import java.util.List;
 
 public class Wk {
 
-	private final List<Dy> days;
+	private final List<CalendarDate> days;
 
-	private Wk(List<Dy> days) {
+	private Wk(List<CalendarDate> days) {
 		this.days = days;
 	}
 
-	public static Wk fromDays(List<Dy> days) {
+	public static Wk fromDays(List<CalendarDate> days) {
 		return new Wk(days);
 	}
 
-	public List<Dy> getDays() {
+	public List<CalendarDate> getDays() {
 		return days;
 	}
 

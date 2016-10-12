@@ -5,11 +5,11 @@ import java.util.List;
 
 public class CalRenderer {
 
-	public static List<List<Dy>> render (Mnth month) {
-		List<List<Dy>> renderedWeeks = new ArrayList<>();
+	public static List<List<CalendarDate>> render (Mnth month) {
+		List<List<CalendarDate>> renderedWeeks = new ArrayList<>();
 		for (Wk week : month.getWeeks() ) {
-			List<Dy> renderedDays = new ArrayList<>();
-			for(Dy day : week.getDays() ) {
+			List<CalendarDate> renderedDays = new ArrayList<>();
+			for(CalendarDate day : week.getDays() ) {
 				renderedDays.add(day);
 			}
 			renderedWeeks.add(renderedDays);

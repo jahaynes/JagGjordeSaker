@@ -10,7 +10,7 @@ import se.mirado.jgs.data.AppState;
 public class DeleteDoneTests {
 
 	private final Function<AppState, AppState> addDone =
-			AddDone.run(TestData.alice, TestData.done1);
+			AddDone.run(TestData.date1, TestData.alice, TestData.done1);
 
 	private final AppState dobble =
 			addDone.apply(addDone.apply(new AppState()));

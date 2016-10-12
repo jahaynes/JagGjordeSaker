@@ -11,7 +11,7 @@ import se.mirado.jgs.data.AppState;
 
 public class AddDoneTests {
 
-	private final Function<AppState, AppState> addDone = AddDone.run(TestData.alice, TestData.done1);
+	private final Function<AppState, AppState> addDone = AddDone.run(TestData.date1, TestData.alice, TestData.done1);
 
 	private final AppState empty = new AppState();
 	private final AppState single = addDone.apply(empty);

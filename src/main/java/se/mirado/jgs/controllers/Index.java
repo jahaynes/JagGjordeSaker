@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,8 +15,9 @@ import se.mirado.jgs.Security;
 import se.mirado.jgs.data.Done;
 import se.mirado.jgs.data.time.CalFactory;
 import se.mirado.jgs.data.time.CalRenderer;
-import se.mirado.jgs.data.time.Dy;
+import se.mirado.jgs.data.time.SimpleDate;
 
+@Component
 @Controller
 public class Index {
 
@@ -30,20 +32,22 @@ public class Index {
 
 	@RequestMapping("/")
 	public String index(Model model) {
-
-		List<Done> dones = appReactor
-			.read( as -> as.dones.take(10).values().toJavaList() )
-			.get();
-
-		model.addAttribute("username", Security.getEscapedUserName());
-		model.addAttribute("dones", dones);
-		model.addAttribute("calendar", renderCalendar(LocalDate.now()));
-
-		return "index";
+		return page(model, LocalDate.now(), SimpleDate.today());
 	}
 
-	private List<List<Dy>> renderCalendar(LocalDate targetDate) {
-		return CalRenderer.render(calFactory.fromLocaleDate(targetDate));
+	public String page(Model model, LocalDate currentDate, SimpleDate targetDate) {
+
+		List<Done> dones = appReactor
+			.read( as -> as.dones.filter(d -> d._2().getDate().equals(targetDate)).values().toJavaList() )
+			.get();
+
+		model.addAttribute("date", targetDate);
+		model.addAttribute("username", Security.getEscapedUserName());
+		model.addAttribute("dones", dones);
+		model.addAttribute("calendar", CalRenderer.render(calFactory.fromLocaleDate(currentDate)));
+
+		return "index";
+
 	}
 
 }
