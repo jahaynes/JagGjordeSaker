@@ -36,7 +36,7 @@
 							<#assign dayClass = "om">
 						</#if>
 					    <td class="${dayClass}">
-					    	<a href="/date/${dy.year?c}-${dy.month?c}-${dy.day?c}">${dy.day}</a>
+					    	<a href="/date/${dy}">${dy.day}</a>
 					    </td>
 					</#list>
 				</tr>

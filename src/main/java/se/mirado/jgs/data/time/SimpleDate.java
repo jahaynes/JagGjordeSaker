@@ -1,7 +1,6 @@
 package se.mirado.jgs.data.time;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 import javaslang.control.Try;
 import lombok.AccessLevel;
@@ -23,14 +22,7 @@ public class SimpleDate {
 	}
 
 	public static Try<SimpleDate> fromStringDate(String strDate) {
-	
-		//TODO - LocalDate.parse can't parse single digit days - perhaps enforce this on the output :(
-		System.out.println(strDate);
-		Try<SimpleDate> t = Try.of( () -> fromDate(LocalDate.parse(strDate, DateTimeFormatter.ofPattern("yyyy-m-d"))));
-		//LocalDate.parse(strDate, 
-		System.out.println(t.isFailure());
-		
-		return t;
+		return Try.of( () -> fromDate(LocalDate.parse(strDate)));
 	}
 
 	public static SimpleDate today() {
@@ -39,7 +31,11 @@ public class SimpleDate {
 
 	@Override
 	public String toString() {
-		return year + "-" + month + "-" + day; 
+
+		return year + "-"
+			+ String.format("%02d", month) + "-"
+			+ String.format("%02d", day); 
+
 	}
 
 }
