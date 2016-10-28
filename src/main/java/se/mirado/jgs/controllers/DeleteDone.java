@@ -1,7 +1,5 @@
 package se.mirado.jgs.controllers;
 
-import java.util.function.Function;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javaslang.control.Try;
 import se.mirado.jgs.AppReactor;
 import se.mirado.jgs.Security;
+import se.mirado.jgs.common.MeasuredFunction;
 import se.mirado.jgs.data.AppState;
 import se.mirado.jgs.data.HtmlEscaped;
 import se.mirado.jgs.data.time.SimpleDate;
@@ -41,10 +40,12 @@ public class DeleteDone {
 		return "redirect:" + redirection;
 	}
 
-	public static Function<AppState,AppState> run(HtmlEscaped userName, long doneId) {
+	public static MeasuredFunction<AppState,AppState> run(HtmlEscaped userName, long doneId) {
 
-		return appState -> {
-
+		return new MeasuredFunction<>(
+		        null,
+		        appState -> {
+ 
 			try {
 				appState
 					.dones
@@ -59,7 +60,7 @@ public class DeleteDone {
 				return appState;
 			}
 
-		};
+		});
 	}
 
 }

@@ -10,11 +10,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javaslang.control.Try;
 import se.mirado.jgs.AppReactor;
 import se.mirado.jgs.Security;
+import se.mirado.jgs.common.MeasuredFunction;
 import se.mirado.jgs.data.AppState;
 import se.mirado.jgs.data.Done;
 import se.mirado.jgs.data.HtmlEscaped;
 import se.mirado.jgs.data.time.SimpleDate;
 
+@SuppressWarnings("unused")
 @Controller
 public class AddDone {
 
@@ -44,9 +46,10 @@ public class AddDone {
 		return "redirect:" + redirection;
 	}
 
-	public static Function<AppState,AppState> run(SimpleDate date, HtmlEscaped loggedInName, HtmlEscaped consultantDone) {
-		return as -> as.prepend(
-			id -> Done.make(id, date, loggedInName, consultantDone) );
+	public static MeasuredFunction<AppState,AppState> run(SimpleDate date, HtmlEscaped loggedInName, HtmlEscaped consultantDone) {
+	    return new MeasuredFunction<>(
+	            null,
+	            as -> as.prepend(id -> Done.make(id, date, loggedInName, consultantDone)));
 	}
 
 }
