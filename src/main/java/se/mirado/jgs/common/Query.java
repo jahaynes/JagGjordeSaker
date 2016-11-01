@@ -4,17 +4,18 @@ import java.util.function.Function;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import se.mirado.jgs.data.AppState;
 import se.mirado.jgs.monitoring.Metric;
 
 @AllArgsConstructor
-public class MeasuredFunction<A,B> implements Function<A, B> {
+public class Query<T> implements Function<AppState, T>, HasMetric {
 
     @Getter
-    private final Metric metric;    
-    private final Function<A, B> func;
+    private final Metric metric;
+    private final Function<AppState, T> func;
 
     @Override
-    public B apply(A a) {
+    public T apply(AppState a) {
         return func.apply(a);
     }
 

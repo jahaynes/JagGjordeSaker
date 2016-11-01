@@ -3,12 +3,12 @@ package se.mirado.jgs.controllers;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import se.mirado.jgs.TestData;
-import se.mirado.jgs.common.MeasuredFunction;
+import se.mirado.jgs.common.Update;
 import se.mirado.jgs.data.AppState;
 
 public class DeleteDoneTests {
 
-	private final MeasuredFunction<AppState, AppState> addDone =
+	private final Update addDone =
 			AddDone.run(TestData.date1, TestData.alice, TestData.done1);
 
 	private final AppState dobble =

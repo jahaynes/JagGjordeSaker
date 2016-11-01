@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javaslang.control.Try;
 import se.mirado.jgs.AppReactor;
 import se.mirado.jgs.Security;
-import se.mirado.jgs.common.MeasuredFunction;
-import se.mirado.jgs.data.AppState;
+import se.mirado.jgs.common.Update;
 import se.mirado.jgs.data.HtmlEscaped;
 import se.mirado.jgs.data.time.SimpleDate;
 
@@ -40,9 +39,9 @@ public class DeleteDone {
 		return "redirect:" + redirection;
 	}
 
-	public static MeasuredFunction<AppState,AppState> run(HtmlEscaped userName, long doneId) {
+	public static Update run(HtmlEscaped userName, long doneId) {
 
-		return new MeasuredFunction<>(
+		return new Update(
 		        null,
 		        appState -> {
  

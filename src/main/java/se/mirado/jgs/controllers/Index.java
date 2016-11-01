@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import se.mirado.jgs.AppReactor;
 import se.mirado.jgs.Security;
-import se.mirado.jgs.common.MeasuredFunction;
-import se.mirado.jgs.data.AppState;
+import se.mirado.jgs.common.Query;
 import se.mirado.jgs.data.Done;
 import se.mirado.jgs.data.time.CalFactory;
 import se.mirado.jgs.data.time.CalRenderer;
@@ -52,8 +51,8 @@ public class Index {
 
 	}
 	
-	private static MeasuredFunction<AppState, List<Done>> readFunc(SimpleDate targetDate) {
-	    return new MeasuredFunction<>(
+	private static Query<List<Done>> readFunc(SimpleDate targetDate) {
+	    return new Query<>(
 	            null,
 	            as -> as.dones.filter(d -> d._2().getDate().equals(targetDate)).values().toJavaList());
 	}

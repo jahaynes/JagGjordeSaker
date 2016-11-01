@@ -8,7 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javaslang.control.Try;
-import se.mirado.jgs.common.MeasuredFunction;
+import se.mirado.jgs.common.Query;
+import se.mirado.jgs.common.Update;
 import se.mirado.jgs.data.AppState;
 
 @Component
@@ -25,9 +26,9 @@ public class AppReactor extends Thread {
 	}
 
 	/** Read from the AppState using a function */
-	public <X> Try<X> read(Function<AppState,X> query) {
+	public <X> Try<X> read(Query<X> query) {
 		BlockingQueue<X> single = new LinkedBlockingQueue<X>();
-        queue.add(new MeasuredFunction<>(null, as -> {
+        queue.add(new Update(null, as -> {
             try {
                 single.put(query.apply(as));
             } catch (InterruptedException e) {

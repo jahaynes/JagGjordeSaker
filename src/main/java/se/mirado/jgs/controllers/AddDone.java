@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javaslang.control.Try;
 import se.mirado.jgs.AppReactor;
 import se.mirado.jgs.Security;
-import se.mirado.jgs.common.MeasuredFunction;
+import se.mirado.jgs.common.Update;
 import se.mirado.jgs.data.AppState;
 import se.mirado.jgs.data.Done;
 import se.mirado.jgs.data.HtmlEscaped;
@@ -46,8 +46,8 @@ public class AddDone {
 		return "redirect:" + redirection;
 	}
 
-	public static MeasuredFunction<AppState,AppState> run(SimpleDate date, HtmlEscaped loggedInName, HtmlEscaped consultantDone) {
-	    return new MeasuredFunction<>(
+	public static Update run(SimpleDate date, HtmlEscaped loggedInName, HtmlEscaped consultantDone) {
+	    return new Update(
 	            null,
 	            as -> as.prepend(id -> Done.make(id, date, loggedInName, consultantDone)));
 	}
