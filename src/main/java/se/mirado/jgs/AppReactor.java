@@ -28,7 +28,9 @@ public class AppReactor extends Thread {
 	/** Read from the AppState using a function */
 	public <X> Try<X> read(Query<X> query) {
 		BlockingQueue<X> single = new LinkedBlockingQueue<X>();
-        queue.add(new Update(null, as -> {
+
+        queue.add(Update.named(
+                "lifting a query to an update", as -> {
             try {
                 single.put(query.apply(as));
             } catch (InterruptedException e) {
@@ -42,7 +44,7 @@ public class AppReactor extends Thread {
 
 	/** Update the AppState using a function */
 	public void update(Function<AppState, AppState> command) {
-                // Send a queue-size metric here
+        // TODO Send a queue-size metric here
 		queue.add(command);
 	}
 

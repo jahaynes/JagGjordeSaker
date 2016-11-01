@@ -47,8 +47,8 @@ public class AddDone {
 	}
 
 	public static Update run(SimpleDate date, HtmlEscaped loggedInName, HtmlEscaped consultantDone) {
-	    return new Update(
-	            null,
+	    return Update.
+	            named("Adding a done for...",
 	            as -> as.prepend(id -> Done.make(id, date, loggedInName, consultantDone)));
 	}
 

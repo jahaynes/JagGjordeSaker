@@ -41,8 +41,8 @@ public class DeleteDone {
 
 	public static Update run(HtmlEscaped userName, long doneId) {
 
-		return new Update(
-		        null,
+		return Update.named(
+		        "Deleting a done id " + doneId + " for " + userName.escapedString,
 		        appState -> {
  
 			try {
