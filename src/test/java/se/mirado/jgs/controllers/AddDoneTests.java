@@ -17,9 +17,9 @@ public class AddDoneTests {
 
 	@Test
 	public void addDoneTest() {
-		assertEquals(0, empty.dones.size());
-		assertEquals(1, single.dones.size());
-		assertEquals(2, dobble.dones.size());
+		assertEquals(0, empty.getDones().size());
+		assertEquals(1, single.getDones().size());
+		assertEquals(2, dobble.getDones().size());
 	}
 
 }

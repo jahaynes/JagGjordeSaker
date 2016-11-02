@@ -46,7 +46,7 @@ public class DeleteDone {
  
 			try {
 				appState
-					.dones
+					.getDones()
 					.get(doneId)
 					.filter( done -> done.getConsultantName().equals(userName) )
 					.getOrElseThrow( () -> new SecurityException(userName + " does not have permissions to delete id " + doneId) );

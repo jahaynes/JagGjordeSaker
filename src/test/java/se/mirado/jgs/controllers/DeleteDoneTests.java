@@ -18,20 +18,20 @@ public class DeleteDoneTests {
 	@Test
 	public void deleteDoneTests() {
 
-		assertEquals(2, dobble.dones.size());
+		assertEquals(2, dobble.getDones().size());
 
 		AppState single = DeleteDone.run(TestData.alice, 2L).apply(dobble);
-		assertEquals(1, single.dones.size());
+		assertEquals(1, single.getDones().size());
 
 		AppState empty = DeleteDone.run(TestData.alice, 1L).apply(single);
-		assertEquals(0, empty.dones.size());
+		assertEquals(0, empty.getDones().size());
 
 	}
 
 	@Test (expected = SecurityException.class)
 	public void deleteDonesWrongUserTest() {
 
-		assertEquals(2, dobble.dones.size());
+		assertEquals(2, dobble.getDones().size());
 
 		DeleteDone.run(TestData.bob, 2L).apply(dobble);
 

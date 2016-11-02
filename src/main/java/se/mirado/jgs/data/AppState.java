@@ -2,6 +2,7 @@ package se.mirado.jgs.data;
 
 import javaslang.collection.SortedMap;
 import javaslang.collection.TreeMap;
+import lombok.Getter;
 import org.springframework.stereotype.Component;
 
 import java.util.function.Function;
@@ -10,6 +11,8 @@ import java.util.function.Function;
 public class AppState {
 
 	private final long nextEventId;
+
+	@Getter
 	private final SortedMap<Long, Done> dones;
 
 	public AppState() {

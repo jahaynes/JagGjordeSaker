@@ -53,7 +53,7 @@ public class Index {
 	private static Query<List<Done>> readFunc(SimpleDate targetDate) {
 	    return Query.named(
 	            "Reading dones for date " + targetDate.toString(),
-	            as -> as.dones.filter(d -> d._2().getDate().equals(targetDate)).values().toJavaList());
+	            as -> as.getDones().filter(d -> d._2().getDate().equals(targetDate)).values().toJavaList());
 	}
 
 }
