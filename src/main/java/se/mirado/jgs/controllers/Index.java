@@ -39,8 +39,8 @@ public class Index {
 	public String page(Model model, LocalDate currentDate, SimpleDate targetDate) {
 
 		List<Done> dones = appReactor
-			.read( readFunc(targetDate) )
-			.get();
+			.query( readFunc(targetDate) )
+			.get();  //TODO this is an unsafe get
 
 		model.addAttribute("date", targetDate);
 		model.addAttribute("username", Security.getEscapedUserName());

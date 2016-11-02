@@ -20,6 +20,10 @@ public class Update implements Function<AppState, AppState>, HasMetric {
         return func.apply(a);
     }
 
+    public static Update create(Metric metric, Function<AppState, AppState> func) {
+        return new Update(metric, func);
+    }
+
     public static Update named(String message, Function<AppState, AppState> func) {
         return new Update(Metric.named(message), func);
     }
