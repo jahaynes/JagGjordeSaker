@@ -12,14 +12,14 @@ public class AddDoneTests {
 	private final Update addDone = AddDone.run(TestData.date1, TestData.alice, TestData.done1);
 
 	private final AppState empty = new AppState();
-	private final AppState single = addDone.apply(empty);
-	private final AppState dobble = addDone.apply(single);
+	private final AppState once = addDone.apply(empty);
+	private final AppState twice = addDone.apply(once);
 
 	@Test
 	public void addDoneTest() {
 		assertEquals(0, empty.getDones().size());
-		assertEquals(1, single.getDones().size());
-		assertEquals(2, dobble.getDones().size());
+		assertEquals(1, once.getDones().size());
+		assertEquals(2, twice.getDones().size());
 	}
 
 }
