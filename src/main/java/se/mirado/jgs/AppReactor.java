@@ -21,14 +21,14 @@ public class AppReactor extends Thread {
 	@Autowired
 	public AppReactor(AppState appState) {
 		this.appState = appState;
-		this.queue = new LinkedBlockingQueue<Update>();
+		this.queue = new LinkedBlockingQueue<>();
 	}
 
 	/** Read from the AppState using a function */
 	public <T> Try<T> query(Query<T> queryCommand) {
-	    BlockingQueue<T> mvar = new LinkedBlockingQueue<T>();
+	    BlockingQueue<T> mvar = new LinkedBlockingQueue<>();
         queue.add(promote(queryCommand, mvar));
-        return Try.of(() -> mvar.take());
+        return Try.of(mvar::take);
     }
 
 	/**

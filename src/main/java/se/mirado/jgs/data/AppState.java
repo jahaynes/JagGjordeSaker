@@ -10,15 +10,15 @@ import javaslang.collection.TreeMap;
 @Component
 public class AppState {
 
-	public final long nextEventId;
-	public final SortedMap<Long, Done> dones;
+	private final long nextEventId;
+	private final SortedMap<Long, Done> dones;
 
 	public AppState() {
 		nextEventId = 1;
 		dones = TreeMap.empty();
 	}
 
-	public AppState(long nextEventId, SortedMap<Long, Done> dones) {
+	private AppState(long nextEventId, SortedMap<Long, Done> dones) {
 		this.nextEventId = nextEventId;
 		this.dones = dones;
 	}

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import se.mirado.jgs.data.time.SimpleDate;
 
 @Controller
-public class Date {
+class Date {
 
 	private final Index index;
 

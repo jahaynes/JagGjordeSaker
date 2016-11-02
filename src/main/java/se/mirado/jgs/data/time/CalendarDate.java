@@ -5,9 +5,8 @@ import java.time.LocalDate;
 public class CalendarDate extends SimpleDate {
 
 	private final boolean isPartOfMonth;
-	
 
-	protected CalendarDate(boolean isPartOfMonth, int year, int month, int day) {
+	private CalendarDate(boolean isPartOfMonth, int year, int month, int day) {
 		super(year,month,day);
 		this.isPartOfMonth = isPartOfMonth;
 	}
