@@ -1,9 +1,9 @@
 package se.mirado.jgs;
 
-import java.time.LocalDate;
-
 import se.mirado.jgs.data.HtmlEscaped;
 import se.mirado.jgs.data.time.SimpleDate;
+
+import java.time.LocalDate;
 
 public class TestData {
 

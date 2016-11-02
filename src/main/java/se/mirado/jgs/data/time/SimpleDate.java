@@ -1,12 +1,12 @@
 package se.mirado.jgs.data.time;
 
-import java.time.LocalDate;
-
 import javaslang.control.Try;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+
+import java.time.LocalDate;
 
 @Getter
 @EqualsAndHashCode

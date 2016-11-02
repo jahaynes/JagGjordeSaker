@@ -1,11 +1,10 @@
 package se.mirado.jgs.data;
 
-import org.junit.Assert;
-import org.junit.Test;
-
 import javaslang.test.Arbitrary;
 import javaslang.test.Gen;
 import javaslang.test.Property;
+import org.junit.Assert;
+import org.junit.Test;
 
 public class HtmlEscapedTests {
 

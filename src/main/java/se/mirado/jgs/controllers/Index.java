@@ -1,15 +1,10 @@
 package se.mirado.jgs.controllers;
 
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Locale;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import se.mirado.jgs.AppReactor;
 import se.mirado.jgs.Security;
 import se.mirado.jgs.common.Query;
@@ -17,6 +12,10 @@ import se.mirado.jgs.data.Done;
 import se.mirado.jgs.data.time.CalFactory;
 import se.mirado.jgs.data.time.CalRenderer;
 import se.mirado.jgs.data.time.SimpleDate;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Locale;
 
 @Component
 @Controller

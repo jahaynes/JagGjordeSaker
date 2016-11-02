@@ -1,11 +1,10 @@
 package se.mirado.jgs.data;
 
-import java.util.function.Function;
-
-import org.springframework.stereotype.Component;
-
 import javaslang.collection.SortedMap;
 import javaslang.collection.TreeMap;
+import org.springframework.stereotype.Component;
+
+import java.util.function.Function;
 
 @Component
 public class AppState {

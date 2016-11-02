@@ -1,15 +1,14 @@
 package se.mirado.jgs;
 
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
-
+import javaslang.control.Try;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import javaslang.control.Try;
 import se.mirado.jgs.common.Query;
 import se.mirado.jgs.common.Update;
 import se.mirado.jgs.data.AppState;
+
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 @Component
 public class AppReactor extends Thread {

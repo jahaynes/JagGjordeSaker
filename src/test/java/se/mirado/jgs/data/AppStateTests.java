@@ -1,12 +1,11 @@
 package se.mirado.jgs.data;
 
 import org.junit.Test;
-
 import se.mirado.jgs.TestData;
 
-import static org.junit.Assert.assertEquals;
-
 import java.util.function.Function;
+
+import static org.junit.Assert.assertEquals;
 
 public class AppStateTests {
 
