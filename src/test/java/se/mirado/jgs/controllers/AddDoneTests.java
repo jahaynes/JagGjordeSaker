@@ -4,14 +4,13 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.function.Function;
-
 import se.mirado.jgs.TestData;
+import se.mirado.jgs.common.Update;
 import se.mirado.jgs.data.AppState;
 
 public class AddDoneTests {
 
-	private final Function<AppState, AppState> addDone = AddDone.run(TestData.date1, TestData.alice, TestData.done1);
+	private final Update addDone = AddDone.run(TestData.date1, TestData.alice, TestData.done1);
 
 	private final AppState empty = new AppState();
 	private final AppState single = addDone.apply(empty);

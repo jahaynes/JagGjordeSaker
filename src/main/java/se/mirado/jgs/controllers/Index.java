@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import se.mirado.jgs.AppReactor;
 import se.mirado.jgs.Security;
+import se.mirado.jgs.common.Query;
 import se.mirado.jgs.data.Done;
 import se.mirado.jgs.data.time.CalFactory;
 import se.mirado.jgs.data.time.CalRenderer;
@@ -38,8 +39,8 @@ public class Index {
 	public String page(Model model, LocalDate currentDate, SimpleDate targetDate) {
 
 		List<Done> dones = appReactor
-			.read( as -> as.dones.filter(d -> d._2().getDate().equals(targetDate)).values().toJavaList() )
-			.get();
+			.query( readFunc(targetDate) )
+			.get();  //TODO this is an unsafe get
 
 		model.addAttribute("date", targetDate);
 		model.addAttribute("username", Security.getEscapedUserName());
@@ -48,6 +49,12 @@ public class Index {
 
 		return "index";
 
+	}
+	
+	private static Query<List<Done>> readFunc(SimpleDate targetDate) {
+	    return Query.named(
+	            "Reading dones for date " + targetDate.toString(),
+	            as -> as.dones.filter(d -> d._2().getDate().equals(targetDate)).values().toJavaList());
 	}
 
 }
