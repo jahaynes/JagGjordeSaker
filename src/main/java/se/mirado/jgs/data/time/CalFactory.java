@@ -1,16 +1,17 @@
 package se.mirado.jgs.data.time;
 
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.Year;
+import java.time.temporal.TemporalField;
+import java.time.temporal.WeekFields;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import java.time.*;
-import java.time.temporal.TemporalField;
-import java.time.temporal.WeekFields;
-
 public class CalFactory {
 
-	private TemporalField dayOfWeek;
+	private final TemporalField dayOfWeek;
 
 	public CalFactory(Locale locale) {
 		this.dayOfWeek = WeekFields.of(locale).dayOfWeek();
@@ -38,9 +39,9 @@ public class CalFactory {
 		LocalDate lastDayToRender =
 				lastDateOfMonth.with(dayOfWeek, 7);
 
-		List<Wk> weeks = new ArrayList<Wk>();
+		List<Wk> weeks = new ArrayList<>();
 
-		List<CalendarDate> days = new ArrayList<CalendarDate>();
+		List<CalendarDate> days = new ArrayList<>();
 
 		int dow = 0;
 		for(LocalDate date = firstDayToRender; date.getDayOfYear() <= lastDayToRender.getDayOfYear(); date = date.plusDays(1)) {
@@ -48,7 +49,7 @@ public class CalFactory {
 			if(dow++ == 6) {
 				dow = 0;
 				weeks.add(Wk.fromDays(days));
-				days = new ArrayList<CalendarDate>(); 
+				days = new ArrayList<>();
 			}
 		}
 

@@ -1,7 +1,6 @@
 package se.mirado.jgs;
 
 import org.springframework.security.core.context.SecurityContextHolder;
-
 import se.mirado.jgs.data.HtmlEscaped;
 
 public class Security {

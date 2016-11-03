@@ -1,9 +1,9 @@
 package se.mirado.jgs;
 
-import java.time.LocalDate;
-
 import se.mirado.jgs.data.HtmlEscaped;
 import se.mirado.jgs.data.time.SimpleDate;
+
+import java.time.LocalDate;
 
 public class TestData {
 
@@ -13,6 +13,6 @@ public class TestData {
 
 	public static final HtmlEscaped done1 = HtmlEscaped.make("Did a thing");
 
-	public static final SimpleDate date1 = SimpleDate.fromDate(LocalDate.of(2000, 04, 22));
+	public static final SimpleDate date1 = SimpleDate.fromDate(LocalDate.of(2000, 4, 22));
 
 }

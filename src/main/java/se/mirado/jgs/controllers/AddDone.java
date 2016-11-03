@@ -1,22 +1,17 @@
 package se.mirado.jgs.controllers;
 
-import java.util.function.Function;
-
+import javaslang.control.Try;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import javaslang.control.Try;
 import se.mirado.jgs.AppReactor;
 import se.mirado.jgs.Security;
 import se.mirado.jgs.common.Update;
-import se.mirado.jgs.data.AppState;
 import se.mirado.jgs.data.Done;
 import se.mirado.jgs.data.HtmlEscaped;
 import se.mirado.jgs.data.time.SimpleDate;
 
-@SuppressWarnings("unused")
 @Controller
 public class AddDone {
 
@@ -29,7 +24,7 @@ public class AddDone {
 
 	@PostMapping("/addDone")
 	public String addDone(
-			@RequestParam(value="consultantDone", required=true) String consultantDone,
+			@RequestParam(value="consultantDone") String consultantDone,
 			@RequestParam(value="date", required=false) String strDate) {
 
 		Try<SimpleDate> date =

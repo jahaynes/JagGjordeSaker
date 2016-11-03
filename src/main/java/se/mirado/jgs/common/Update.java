@@ -1,12 +1,12 @@
 package se.mirado.jgs.common;
 
-import java.util.function.Function;
-
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import se.mirado.jgs.data.AppState;
 import se.mirado.jgs.monitoring.Metric;
+
+import java.util.function.Function;
 
 @AllArgsConstructor (access = AccessLevel.PRIVATE)
 public class Update implements Function<AppState, AppState>, HasMetric {

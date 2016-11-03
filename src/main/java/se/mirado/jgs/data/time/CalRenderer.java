@@ -9,10 +9,8 @@ public class CalRenderer {
 		List<List<CalendarDate>> renderedWeeks = new ArrayList<>();
 		for (Wk week : month.getWeeks() ) {
 			List<CalendarDate> renderedDays = new ArrayList<>();
-			for(CalendarDate day : week.getDays() ) {
-				renderedDays.add(day);
-			}
-			renderedWeeks.add(renderedDays);
+            renderedDays.addAll(week.getDays());
+            renderedWeeks.add(renderedDays);
 		}
 		return renderedWeeks;
 	}

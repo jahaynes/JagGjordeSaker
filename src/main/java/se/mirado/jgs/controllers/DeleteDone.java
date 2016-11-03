@@ -1,12 +1,11 @@
 package se.mirado.jgs.controllers;
 
+import javaslang.control.Try;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import javaslang.control.Try;
 import se.mirado.jgs.AppReactor;
 import se.mirado.jgs.Security;
 import se.mirado.jgs.common.Update;
@@ -47,7 +46,7 @@ public class DeleteDone {
  
 			try {
 				appState
-					.dones
+					.getDones()
 					.get(doneId)
 					.filter( done -> done.getConsultantName().equals(userName) )
 					.getOrElseThrow( () -> new SecurityException(userName + " does not have permissions to delete id " + doneId) );
