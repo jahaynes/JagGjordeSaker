@@ -9,7 +9,7 @@
 
     <div class="container">
         <div class="control-group">
-            <h2 class="muted">Add a done</h2>
+            <h1 class="muted">Add a done</h1>
 
             <div><i>Logged in as ${username}</i></div>
             <div><i>The date is ${date}</i></div>
