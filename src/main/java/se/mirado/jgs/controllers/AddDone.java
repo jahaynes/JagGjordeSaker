@@ -12,7 +12,6 @@ import se.mirado.jgs.data.Done;
 import se.mirado.jgs.data.HtmlEscaped;
 import se.mirado.jgs.data.time.SimpleDate;
 
-@SuppressWarnings("unused")
 @Controller
 public class AddDone {
 
