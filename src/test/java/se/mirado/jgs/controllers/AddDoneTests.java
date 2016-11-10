@@ -12,8 +12,8 @@ public class AddDoneTests {
 	private final Update addDone = AddDone.run(TestData.date1, TestData.alice, TestData.done1);
 
 	private final AppState empty = new AppState();
-	private final AppState once = addDone.apply(empty);
-	private final AppState twice = addDone.apply(once);
+	private final AppState once = addDone.apply(empty).get();
+	private final AppState twice = addDone.apply(once).get();
 
 	@Test
 	public void addDoneTest() {

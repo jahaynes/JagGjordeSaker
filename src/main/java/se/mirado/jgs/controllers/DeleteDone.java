@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import se.mirado.jgs.AppReactor;
 import se.mirado.jgs.Security;
+import se.mirado.jgs.common.Permission;
 import se.mirado.jgs.common.Update;
 import se.mirado.jgs.data.HtmlEscaped;
 import se.mirado.jgs.data.time.SimpleDate;
@@ -42,22 +43,12 @@ public class DeleteDone {
 
 		return Update.named(
 		        "Deleting a done id " + doneId + " for " + userName.escapedString,
-		        appState -> {
- 
-			try {
-				appState
-					.getDones()
-					.get(doneId)
-					.filter( done -> done.getConsultantName().equals(userName) )
-					.getOrElseThrow( () -> new SecurityException(userName + " does not have permissions to delete id " + doneId) );
-
-				return appState.remove(doneId);
-
-			} catch (Exception e) {
-				e.printStackTrace();
-				return appState;
-			}
-
+		        as -> {
+		            Permission permission =
+	                    as.getPermission(userName, doneId);
+		            return permission == Permission.HasPermission
+	                    ? Try.of( () -> as.remove(doneId) )
+                        : Try.failure(new RuntimeException("Could not delete " + doneId + ": " + permission));
 		});
 	}
 

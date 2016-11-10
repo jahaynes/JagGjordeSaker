@@ -3,6 +3,8 @@ package se.mirado.jgs.data;
 import javaslang.collection.SortedMap;
 import javaslang.collection.TreeMap;
 import lombok.Getter;
+import se.mirado.jgs.common.Permission;
+
 import org.springframework.stereotype.Component;
 
 import java.util.function.Function;
@@ -40,7 +42,16 @@ public class AppState {
 
 		return other instanceof AppState
 			&& ((AppState)other).dones.equals(dones);
-
 	}
+
+	public Permission getPermission(HtmlEscaped userName, long doneId) {
+        return dones
+            .get(doneId)
+            .map( done -> done.getConsultantName() )
+            .map( name -> name.equals(userName)
+                        ? Permission.HasPermission
+                        : Permission.NoPermission )
+            .getOrElse( Permission.ItemNotPresent );
+    }
 
 }

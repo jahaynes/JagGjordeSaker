@@ -25,9 +25,11 @@ public class AppReactor extends Thread {
 
 	/** Read from the AppState using a function */
 	public <T> Try<T> query(Query<T> queryCommand) {
-	    BlockingQueue<T> mvar = new LinkedBlockingQueue<>();
+	    BlockingQueue<Try<T>> mvar = new LinkedBlockingQueue<>();
         queue.add(promote(queryCommand, mvar));
-        return Try.of(mvar::take);
+        return Try
+                .success(mvar)
+                .flatMapTry( m -> m.take() );
     }
 
 	/**
@@ -38,17 +40,28 @@ public class AppReactor extends Thread {
 	 * @param mvar  A blocking container that others can poll for the answer
 	 * @return  The Query promoted to an Update
 	 */
-	private static <T> Update promote(final Query<T> queryCommand, BlockingQueue<T> mvar) {
-	    return Update.create(
-                queryCommand.getMetric(),
-                as -> {
-                    try {
-                        mvar.put(queryCommand.apply(as));
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    return as;
-                });
+private static <T> Update promote(final Query<T> queryCommand, BlockingQueue<Try<T>> mvar) {
+
+    return Update.create(
+
+        queryCommand.getMetric(),
+
+        as -> {
+            //The caller's query may or may not work
+            Try<T> queryResult = queryCommand.apply(as);
+
+            try {
+                //Either way, send the result back to the caller
+                //So they can handle their failure
+                mvar.put(queryResult);
+                
+                return Try.success(as);
+            } catch (InterruptedException e) {
+                
+                //This is our failure, not the caller's.
+                return Try.failure(e);
+            }
+        });
 	}
 
 	/** Update the AppState using a function */
@@ -63,12 +76,21 @@ public class AppReactor extends Thread {
 			try {
 			    Update update = queue.take();
 			    System.out.println(update.getMetric());
-				appState = update.apply(appState);
+
+			    update
+			        .apply( appState )
+			        .map( updated -> this.appState = updated )
+			        .orElseRun( e -> logError(e) );
+
 			} catch (InterruptedException e) {
 				System.err.println("Waiting on queue was interrupted");
 				e.printStackTrace();
 			}
 		}
+	}
+
+	private static void logError(Throwable t) {
+	    t.printStackTrace();
 	}
 
 }

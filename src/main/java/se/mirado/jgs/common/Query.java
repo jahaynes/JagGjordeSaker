@@ -8,23 +8,25 @@ import se.mirado.jgs.monitoring.Metric;
 
 import java.util.function.Function;
 
+import javaslang.control.Try;
+
 @AllArgsConstructor (access = AccessLevel.PRIVATE)
-public class Query<T> implements Function<AppState, T>, HasMetric {
+public class Query<T> implements Function<AppState, Try<T>>, HasMetric {
 
     @Getter
     private final Metric metric;
-    private final Function<AppState, T> func;
+    private final Function<AppState, Try<T>> func;
 
     @Override
-    public T apply(AppState a) {
+    public Try<T> apply(AppState a) {
         return func.apply(a);
     }
 
-    public static <T> Query<T> named(String message, Function<AppState, T> func) {
+    public static <T> Query<T> named(String message, Function<AppState, Try<T>> func) {
         return new Query<>(Metric.named(message), func);
     }
 
-    public static <T> Query<T> anonymous(Function<AppState, T> func) {
+    public static <T> Query<T> anonymous(Function<AppState, Try<T>> func) {
         return new Query<>(Metric.anonymous(), func);
     }
 
