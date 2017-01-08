@@ -48,7 +48,7 @@ public class DeleteDone {
 	                    as.getPermission(userName, doneId);
 		            return permission == Permission.HasPermission
 	                    ? Try.of( () -> as.remove(doneId) )
-                        : Try.failure(new RuntimeException("Could not delete " + doneId + ": " + permission));
+                        : Try.failure(new SecurityException("Could not delete " + doneId + ": " + permission));
 		});
 	}
 

@@ -1,5 +1,6 @@
 package se.mirado.jgs.data.time;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import javaslang.test.Arbitrary;
@@ -25,6 +26,12 @@ public class SimpleDateTests {
                 .forEach( System.err::println );
         }
 
+   }
+
+   @Test
+   public void cannotConstructBadDateFromString() {
+       Assert.assertTrue( SimpleDate.fromStringDate("abc").isFailure() );
+       Assert.assertTrue( SimpleDate.fromStringDate("2012-02-30").isFailure() );
    }
 }
 

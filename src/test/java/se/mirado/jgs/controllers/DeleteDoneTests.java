@@ -29,12 +29,15 @@ public class DeleteDoneTests {
 	}
 
 	@Test (expected = SecurityException.class)
-	public void deleteDonesWrongUserTest() {
+	public void deleteDonesWrongUserTest() throws Throwable {
 
 		assertEquals(2, twice.getDones().size());
 
-		DeleteDone.run(TestData.bob, 2L).apply(twice);
-
+		throw
+            DeleteDone
+                .run(TestData.bob, 2L)
+                .apply(twice)
+                .getCause();
 	}
 
 }
