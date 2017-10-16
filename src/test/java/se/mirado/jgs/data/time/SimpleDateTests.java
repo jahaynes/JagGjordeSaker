@@ -3,9 +3,9 @@ package se.mirado.jgs.data.time;
 import org.junit.Assert;
 import org.junit.Test;
 
-import javaslang.test.Arbitrary;
-import javaslang.test.CheckResult;
-import javaslang.test.Property;
+import io.vavr.test.Arbitrary;
+import io.vavr.test.CheckResult;
+import io.vavr.test.Property;
 
 public class SimpleDateTests {
 

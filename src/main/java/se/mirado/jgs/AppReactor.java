@@ -1,6 +1,6 @@
 package se.mirado.jgs;
 
-import javaslang.control.Try;
+import io.vavr.control.Try;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import se.mirado.jgs.common.Query;

@@ -3,8 +3,8 @@ package se.mirado.jgs.data.time;
 import java.time.LocalDate;
 import java.util.Random;
 
-import javaslang.test.Arbitrary;
-import javaslang.test.Gen;
+import io.vavr.test.Arbitrary;
+import io.vavr.test.Gen;
 
 public class ArbitrarySimpleDate implements Arbitrary<SimpleDate> {
 

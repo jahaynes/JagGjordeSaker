@@ -1,8 +1,8 @@
 package se.mirado.jgs.data;
 
-import javaslang.test.Arbitrary;
-import javaslang.test.Gen;
-import javaslang.test.Property;
+import io.vavr.test.Arbitrary;
+import io.vavr.test.Gen;
+import io.vavr.test.Property;
 import org.junit.Assert;
 import org.junit.Test;
 

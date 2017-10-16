@@ -1,7 +1,7 @@
 package se.mirado.jgs.data;
 
-import javaslang.collection.SortedMap;
-import javaslang.collection.TreeMap;
+import io.vavr.collection.SortedMap;
+import io.vavr.collection.TreeMap;
 import lombok.Getter;
 import se.mirado.jgs.common.Permission;
 

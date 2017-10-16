@@ -8,7 +8,7 @@ import se.mirado.jgs.monitoring.Metric;
 
 import java.util.function.Function;
 
-import javaslang.control.Try;
+import io.vavr.control.Try;
 
 @AllArgsConstructor (access = AccessLevel.PRIVATE)
 public class Query<T> implements Function<AppState, Try<T>>, HasMetric {

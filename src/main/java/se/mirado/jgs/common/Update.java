@@ -1,6 +1,6 @@
 package se.mirado.jgs.common;
 
-import javaslang.control.Try;
+import io.vavr.control.Try;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

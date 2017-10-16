@@ -1,6 +1,6 @@
 package se.mirado.jgs.controllers;
 
-import javaslang.control.Try;
+import io.vavr.control.Try;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
